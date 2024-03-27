@@ -1,0 +1,149 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "L5 OpenApi",
+        "description": "L5 Swagger OpenApi description",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/auditors": {
+            "get": {
+                "summary": "The index method.",
+                "operationId": "de81d20d00d27310f51218854f3d8d9d",
+                "responses": {
+                    "200": {
+                        "description": "List of auditors"
+                    }
+                }
+            }
+        },
+        "/api/auditors/free_jobs": {
+            "get": {
+                "summary": "The index method.",
+                "operationId": "599bf6204065ca219d48a97e0cfa01d7",
+                "responses": {
+                    "200": {
+                        "description": "List of available jobs"
+                    }
+                }
+            }
+        },
+        "/api/auditors/completed_schedule": {
+            "get": {
+                "summary": "The index method.",
+                "operationId": "108b6833645a028fe428eb2854a7d05d",
+                "responses": {
+                    "200": {
+                        "description": "List of  completed jobs"
+                    }
+                }
+            }
+        },
+        "/api/auditors/{jobId}/assign": {
+            "post": {
+                "summary": "The store method.",
+                "operationId": "64a2a98ac56f838427656c6787ee58fa",
+                "parameters": [
+                    {
+                        "name": "jobId",
+                        "in": "path",
+                        "description": "The ID of the job to be assigned",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "auditor_id"
+                                ],
+                                "properties": {
+                                    "auditor_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "scheduled_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-04-01"
+                                    },
+                                    "note": {
+                                        "type": "string",
+                                        "example": "This is a note"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Assign a job to an auditor"
+                    }
+                }
+            }
+        },
+        "/api/auditors/jobs_to_complete": {
+            "get": {
+                "summary": "The index method.",
+                "operationId": "72323f0a2c995806410862c7fe3ef53c",
+                "responses": {
+                    "200": {
+                        "description": "List of jobs in progress"
+                    }
+                }
+            }
+        },
+        "/api/auditors/{jobId}/complete": {
+            "post": {
+                "summary": "The update method.",
+                "operationId": "0b5d4bddf446bd26ee46ccbc6031f141",
+                "parameters": [
+                    {
+                        "name": "jobId",
+                        "in": "path",
+                        "description": "The ID of the job to be completed",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "auditor_id"
+                                ],
+                                "properties": {
+                                    "auditor_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "note": {
+                                        "type": "string",
+                                        "example": "This is a note"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Job Compelted successfully"
+                    }
+                }
+            }
+        }
+    }
+}
